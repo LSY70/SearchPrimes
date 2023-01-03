@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 int main(void){
-        int primos[100000] = {2};
+        int primos[10000] = {2};
         int length = 1;
 
         for(int i=3; i!=100000; i++){
