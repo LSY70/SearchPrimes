@@ -13,7 +13,7 @@ bool is_prime(int num, const int* primes, int num_primes) {
 }
 
 int main() {
-    long int limit = 1000000000;
+    long int limit = 1000000;
     // scanf("%ld", &limit);
     const int max_primes = 35000;
 
