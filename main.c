@@ -1,29 +1,38 @@
-#include <stdio.h>
+#include <iostream>
+#include <string>
+#include <cmath>
 
-int main(void){
-        int primos[15000] = {};
-        int length = 0, real = 0, maior = 0;
-
-        for(int i=2; i!=1000000; i++){
-                int primo = 1;
-                for(int c=0; c!=length; c++){
-                        if(i%primos[c] == 0){
-                                if (primos[c] > maior){
-                                        maior = primos[c];
-                                }
-                                primo = 0;
-                                break;
-                        }
-                }
-
-                if (primo == 1){
-                        if (i < 997){
-                                primos[length] = i;
-                                length++;
-                        }
-                        printf("[%d]  ", i);
-                        real++;
-                }
+bool is_prime(int num, const int* primes, int num_primes) {
+    int sqrt_num = static_cast<int>(std::sqrt(num));
+    for (int i = 0; i < num_primes && primes[i] <= sqrt_num; ++i) {
+        if (num % primes[i] == 0) {
+            return false;
         }
-        printf("Lista: %d, %d, %d, _%d_", real, primos[length-1], maior, length);
+    }
+    return true;
+}
+
+int main() {
+    long int limit = 1000000000;
+    // scanf("%ld", &limit);
+    const int max_primes = 35000;
+
+    int primes[max_primes] = {2};
+    int num_primes = 1;
+    std::string final = "2 ";
+
+    for (long long i = 3; i <= limit; i += 2) {
+        if (is_prime(i, primes, num_primes)) {
+            if (i*i <= limit) {
+            	primes[num_primes] = i;
+               	num_primes++;
+            }
+            final += std::to_string(i) + " ";
+        }
+    }
+
+    std::cout << final << std::endl;
+    std::cout << "Number of primes: " << num_primes << std::endl;
+
+    return 0;
 }
